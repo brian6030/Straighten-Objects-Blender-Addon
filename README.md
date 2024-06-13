@@ -1,6 +1,9 @@
 # Straighten Objects Addon for Blender
 
 A tool to realign tilted meshes with applied rotation.
+
+![Demo](demo.gif)
+
 ## Installation
 
 1. Go to `Edit` > `Preferences` > `Add-ons`.
