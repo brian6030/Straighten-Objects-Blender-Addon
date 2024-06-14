@@ -5,6 +5,7 @@ bl_info = {
 
 import bpy
 from bpy.props import BoolProperty
+import bmesh
 
 class CustomTransformOperator(bpy.types.Operator):
     bl_idname = "transform.custom_orientation"
@@ -20,12 +21,13 @@ class CustomTransformOperator(bpy.types.Operator):
     def execute(self, context):
         obj = bpy.context.active_object
         
-        # Error handling
-        if obj is None:
-            self.report({'WARNING'}, "No active object selected")
-            return {'CANCELLED'}     
-        if context.mode != 'EDIT_MESH':
-            self.report({'WARNING'}, "Must be in Edit Mode")
+        # Eror handling
+        bm = bmesh.from_edit_mesh(obj.data)
+        if not any(v.select for v in bm.verts) and not any(e.select for e in bm.edges) and not any(f.select for f in bm.faces):
+            self.report({'WARNING'}, "Nothing selected in Edit Mode")
+            return {'CANCELLED'}
+        if any(v.select for v in bm.verts) and not any(e.select for e in bm.edges) and not any(f.select for f in bm.faces):
+            self.report({'WARNING'}, "Only vertices selected")
             return {'CANCELLED'}
 
         # Straighten object
