@@ -13,9 +13,8 @@ A tool to realign tilted meshes with applied rotation.
 
 ## Usage
 
-1. Go to `Tool` tab in Sidebar.
-1. Find the **Custom Transform Orientation** panel.
 1. Select the tilted Edge or Face of the mesh in Edit Mode.
-1. Press the **Straighten Object** button.
+1. Go to `Tool` tab in Sidebar.
+1. Press the **Straighten Object** button in **Custom Transform Orientation** panel.
 
 
